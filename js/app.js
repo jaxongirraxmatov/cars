@@ -6,7 +6,7 @@ function init() {
     loader(true)
     fetch(BASE_URL + "/cars")
         .then((res) => {
-            return res.json
+            return res.json()
         })
         .then((res) => {
             ui(res.data);
@@ -22,7 +22,7 @@ function loader(bool) {
 
     if (bool) {
         elCardLoader.innerHTML = "";
-        elCardLoader.classList.remov("hidden");
+        elCardLoader.classList.remove("hidden");
         let i = 0;
         while (true) {
             if (i === LOADER_COUNT) break;
