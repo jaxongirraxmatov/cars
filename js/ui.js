@@ -1,17 +1,24 @@
-import { log } from "winjs";
-import { elcardContainer, elcardTemlate } from "./html-celectin.js";
+import { elCardContainer, elCardTemplate } from "./html-selection.js";
 
 export function ui(cars) {
-    elcardContainer.innerHTML = "";
+    elCardContainer.innerHTML = "";
 
-    cars.array.forEach(car => {
-        const clone = elcardTemlate.cloneNode(true).content;
+    cars.forEach((car) => {
+        const clone = elCardTemplate.cloneNode(true).content;
         const elName = clone.getElementById("name");
         const elDescription = clone.getElementById("description");
         const elCountry = clone.getElementById("country");
         const elCategory = clone.getElementById("category");
         const elColor = clone.getElementById("color");
         const elColorBadge = clone.getElementById("colorBadge");
+        const elInfo = clone.querySelector(".js-info");
+        const elDelete = clone.querySelector(".js-delete");
+        const elEdit = clone.querySelector(".js-edit");
+
+        // id
+        elInfo.href = `/pages/details.html?id=${car.id}`;
+        elDelete.id = car.id;
+        elEdit.id = car.id;
 
         // content
         elName.innerText = car.name;
@@ -19,9 +26,9 @@ export function ui(cars) {
         elCountry.innerText = car.country;
         elCategory.innerText = car.category;
         elColor.innerText = car.colorName;
-        elColorBadge.style.backgraundColor = car.colorName;
+        elColorBadge.style.backgroundColor = car.color;
 
         // append
-        elcardContainer.appendChild(clone)
+        elCardContainer.appendChild(clone);
     });
 }
