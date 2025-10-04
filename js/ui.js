@@ -11,16 +11,18 @@ export function ui(cars) {
         const elCategory = clone.getElementById("category");
         const elColor = clone.getElementById("color");
         const elColorBadge = clone.getElementById("colorBadge");
-        const elInfo = clone.querySelector(".js-info");
         const elDelete = clone.querySelector(".js-delete");
         const elEdit = clone.querySelector(".js-edit");
+        const elInfo = clone.querySelector(".js-info");
 
-        // id
-        elInfo.href = `/pages/details.html?id=${car.id}`;
+
+        // ID
+        elInfo.href = `pages/details.html?id=${car.id}`;
         elDelete.id = car.id;
         elEdit.id = car.id;
 
-        // content
+
+        // CONTENT
         elName.innerText = car.name;
         elDescription.innerText = car.description;
         elCountry.innerText = car.country;
@@ -28,7 +30,9 @@ export function ui(cars) {
         elColor.innerText = car.colorName;
         elColorBadge.style.backgroundColor = car.color;
 
-        // append
+
+
         elCardContainer.appendChild(clone);
+
     });
 }

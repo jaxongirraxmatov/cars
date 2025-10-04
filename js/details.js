@@ -1,45 +1,26 @@
 import { BASE_URL } from "./constants.js";
-import {
-    elDetailsDescription,
-    elDetailsTitle,
-    elDetailsTrim,
-    elDetailsGeneration,
-    elDetailsYear,
-    elDetailsColor,
-    elDetailsColorName,
-    elDetailsCategory,
-    elDetailsDoorCount,
-    elDetailsSeatCount,
-    elDetailsMaxSpeed,
-    elDetailsAcceleration,
-    elDetailsEngine,
-    elDetailsHorsePower,
-    elDetailsFuelType,
-    elDetailsCountry,
-    elDetailsCity,
-    elDetailsHighway,
-    elDetailsCombined,
-    elDetailsWrapper,
-    elDetailsLoading,
-} from "./html-selection.js";
+import { elDetailsDescription, elDetailsTitle, elDetailsTrim, elDetailsGeneration, elDetailsYear, elDetailsColor, elDetailsColorName, elDetailsCategory, elDetailsDoorCount, elDetailsSeatCount, elDetailsMaxSpeed, elDdetailsAcceleration, elDetailsEngine, elDetailsHorsePower, elDetailsFuelType, elDetailsCountry, elDetailsCity, elDetailsHighway, elDetailsCombined, elDetailsWrapper, elDetailsLoading, } from "./html-selection.js";
 
 let title;
 
 function init() {
-    loading(true);
+    loading(true)
     const id = new URLSearchParams(location.search).get("id");
     fetch(BASE_URL + "/cars" + `/${id}`)
-        .then((res) => res.json())
         .then((res) => {
-            displayDetails(res);
+            return res.json()
+        })
+        .then((res) => {
+            displayDetails(res)
         })
         .catch(() => {
 
         })
         .finally(() => {
-            loading(false);
-        });
+            loading(false)
+        })
 }
+
 
 function loading(bool) {
     if (bool) {
@@ -51,6 +32,7 @@ function loading(bool) {
         elDetailsLoading.classList.add("hidden");
     }
 }
+
 
 function displayDetails(carData) {
     title = carData.name;
@@ -66,7 +48,7 @@ function displayDetails(carData) {
     elDetailsDoorCount.innerText = carData.doorCount;
     elDetailsSeatCount.innerText = carData.seatCount;
     elDetailsMaxSpeed.innerText = carData.maxSpeed;
-    elDetailsAcceleration.innerText = carData.acceleration;
+    elDdetailsAcceleration.innerText = carData.acceleration;
     elDetailsEngine.innerText = carData.engine;
     elDetailsHorsePower.innerText = carData.horsepower;
     elDetailsFuelType.innerText = carData.fuelType;
@@ -77,4 +59,5 @@ function displayDetails(carData) {
     elDetailsCombined.innerText = carData?.fuelConsumption?.combined;
 }
 
-init();
+
+init()
